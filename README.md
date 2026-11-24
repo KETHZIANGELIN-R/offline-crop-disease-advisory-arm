@@ -1,72 +1,107 @@
 
-# Offline Crop Disease and Pest Detection with AI Advisory
+# Offline Crop Disease Detection and Advisory
 
-## Bharat AI-SoC Student Challenge 2026–27
+**Bharat AI-SoC Student Challenge 2026–27**  
+**Problem Statement 1**
 
-**Problem Statement No.:** 1
+## 1. Project Overview
 
-**Problem Statement:** Offline Crop-Disease/Pest Detection and Advisory for Farmers
+This project is a prototype for detecting crop leaf diseases using an AI image classification model and providing basic farmer advisory in English and Tamil.
 
-## 1. Overview
+The application is designed to perform local model inference after the initial model download.
 
-This project aims to develop an offline AI-powered crop disease and pest detection system that helps farmers identify crop-related problems and receive practical advisory guidance without depending on continuous internet connectivity.
+## 2. Key Features
 
-The proposed solution focuses on on-device AI inference, edge computing and local-language farmer assistance.
+- Crop leaf image upload
+- AI-based disease classification
+- 38 PlantVillage disease and healthy-condition classes
+- Model output score display
+- English and Tamil language support
+- Basic rule-based farmer advisory
+- Automatic first-time model download
+- Local inference after model download
 
-## 2. Objectives
+## 3. Technology Stack
 
-- Identify potential crop diseases and pests from images.
-- Estimate disease or pest severity.
-- Provide practical intervention and treatment guidance.
-- Support local-language recommendations.
-- Enable operation without continuous internet connectivity.
-- Explore deployment on Arm-based edge devices.
+- Python
+- Streamlit
+- TensorFlow
+- MobileNetV2
+- NumPy
+- Pillow
 
-## 3. Proposed System Architecture
+## 4. Model Information
 
-The system consists of two major pipelines:
+Model: MobileNetV2  
+Dataset label set: PlantVillage (38 classes)
 
-### Vision Pipeline
-1. Crop image capture.
-2. Image preprocessing.
-3. Disease or pest identification.
-4. Classification and severity estimation.
+Model download:
+https://huggingface.co/ashikaasriarun/MobileNet-V2-PlantVillage/resolve/main/best_mnv2_pv_original.keras
 
-### Advisory Pipeline
-1. Receive structured detection findings.
-2. Provide contextual reasoning using a Llama-family model.
-3. Use approved regional agricultural guidance.
-4. Present actionable recommendations to farmers.
+The model is downloaded automatically on the first application run and stored locally in the `models` directory.
 
-## 4. Target Hardware
+## 5. Project Structure
 
-- Arm-based Android smartphone.
-- Raspberry Pi 5.
-- Optional Raspberry Pi AI HAT+ for vision acceleration.
+```text
+offline-crop-disease-advisory-arm/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+│
+├── documentation/
+│   └── labels.json
+│
+└── models/
+    └── plant_disease_model.keras
+```
 
-## 5. Technologies
+The model file is downloaded automatically and does not need to be uploaded to GitHub.
 
-To be updated with the actual frameworks, AI models, programming languages and deployment tools used in the implementation.
+## 6. Installation and Execution
 
-## 6. Project Implementation Status
+Install the required packages:
 
-Implementation details, supported features and test results will be documented here based on the completed prototype.
+```bash
+pip install -r requirements.txt
+```
 
-## 7. Repository Structure
+Run the application:
 
-- app/ – Application source code
-- models/ – AI model information
-- dataset/ – Dataset details
-- advisory/ – Advisory resources
-- hardware/ – Hardware configuration
-- results/ – Testing and evaluation
-- documentation/ – Technical report
+```bash
+streamlit run app.py
+```
 
-## 8. Expected Outcome
+Internet access is required for the initial model download. After downloading the model and installing dependencies, local inference can run without internet.
 
-A deployable edge-AI crop assistance system designed to help farmers identify potential crop problems and access practical guidance in offline environments.
+## 7. Current Implementation Status
 
-## 9. Challenge
+This is a laptop-based working prototype.
 
-Bharat AI-SoC Student Challenge 2026–27
+Implemented:
+- Image upload
+- MobileNetV2 model inference
+- Predicted crop and condition display
+- English and Tamil advisory
+- Local model storage
 
+## 8. Limitations
+
+- The prototype has not undergone formal accuracy evaluation.
+- The displayed model score is not a verified accuracy measurement.
+- The 40% threshold is an experimental prototype setting.
+- Advisory messages are general precautions, not confirmed medical or agricultural diagnoses.
+- Raspberry Pi 5, Arm hardware and AI accelerator deployment have not yet been implemented or tested.
+
+## 9. Future Scope
+
+- Deployment on Arm-based edge devices
+- Raspberry Pi 5 integration
+- Model optimization for edge inference
+- Field image validation
+- Expanded regional-language advisory
+- Improved disease classification and evaluation
+
+## 10. Disclaimer
+
+This application provides preliminary AI predictions for demonstration and educational purposes. Farmers should consult qualified agricultural experts before taking treatment decisions.
